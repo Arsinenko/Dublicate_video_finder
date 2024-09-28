@@ -5,7 +5,7 @@ import uuid
 
 import models
 from converter import hash_bytearray_to_hashes_array
-from main import get_hash
+from video_hash import get_hash
 
 engine = create_engine("postgresql://hacksai:qwerty1221777@localhost:5432/hacksdb")
 
