@@ -16,10 +16,12 @@ def read_video(video_path):
    #resizer = torchvision.transforms.Resize(image_size_low, antialias=True)
  
    curr_frames = []
- 
+
+   print("111")
    for frame in reader:
        curr_frames.append(frame["data"])
-       print(frame["data"])
+       #print(frame["data"])
+   print("222")
 
 
 
