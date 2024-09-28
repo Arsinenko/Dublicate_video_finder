@@ -4,10 +4,14 @@ import uuid
 from database import add_video, close_session
 
 def add_videos_from_csv():
-    with open("train.csv", "r") as file:
+
+    file_name = "train.csv"
+
+    with open(file_name, "r") as file:
         reader = csv.reader(file)
-        count_row = len(list(reader))
-        print("чтение из train.csv")
+        rows = list(reader)
+        count_row = len(rows)
+        print(f"чтение из {file_name}, кол-во строк: {count_row}")
         for row in reader:
 
             # print("uuid:" + row[1])
