@@ -36,7 +36,10 @@ def get_hash(path_to_file):
             print(hash1)
 
     capture.release()
-    return result
+    hasharray = bytearray()
+    for elem in result:
+        hasharray.append(elem)
+    return hasharray
 
 
 print(get_hash("https://s3.ritm.media/yappy-db-duplicates/23fac2f2-7f00-48cb-b3ac-aac8caa3b6b4.mp4"))
