@@ -9,12 +9,13 @@ class DB:
     def connect(self):
         try:
             self.connection = psycopg2.connect(
-                dbname="dbname this",
-                user="username this",
-                password="password this",
-                host="host this",
-                port="port this"
+                dbname="hacksdb",
+                user="hacksai",
+                password="qwerty1221777",
+                host="localhost",
+                port="5432"
             )
+            print("Connection established")
         except Exception as e:
             print("Connection error:" + str(e))
 
