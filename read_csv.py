@@ -16,6 +16,12 @@ def add_videos_from_csv():
 
         n = 1
 
+        print(f"Рассчет хэшей для видео из {file_name}, кол-во строк: {count_row}")
+        urls = []
+        for row in rows:
+            urls.append(row[2])
+        print("Ссылки собраны")
+        
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
         for row in rows:
             print(f"{n} из {count_row}")
