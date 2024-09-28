@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import models
 
-engine = create_engine("postgresql://hackai:qwerty1221777@localhost:5432/hacksdb")
+engine = create_engine("postgresql://hacksai:qwerty1221777@localhost:5432/hacksdb")
 
 
 Session = sessionmaker(bind=engine)
