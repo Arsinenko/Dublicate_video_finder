@@ -45,7 +45,7 @@ def add_videos_from_csv():
 
         loop = asyncio.get_event_loop()
         results = loop.run_until_complete(precompute_hashes())
-)
+
         print(results[0])
 
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
