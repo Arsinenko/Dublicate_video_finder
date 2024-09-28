@@ -2,5 +2,6 @@ import csv
 
 with open("train.csv", "r") as file:
     reader = csv.reader(file)
-    for row in reader:
-        print(row)
+    print(len(reader))
+    #for row in reader:
+    #    print(row)
