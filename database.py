@@ -22,7 +22,7 @@ def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, is_
 
     print(_is_duplicate, is_duplicate)
     if is_duplicate != is_duplicate:
-        input(f"{UUID}")
+        input(f"Несоответствие: алгоритм: {_is_duplicate} тестовые данные: {is_duplicate} {UUID}")
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
                          content_hash=content_hash,
