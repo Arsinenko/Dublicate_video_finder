@@ -3,7 +3,7 @@ import uuid
 import concurrent.futures
 
 from database import add_video, close_session
-from video_hash import get_hash
+from video_hash import get_hash, read_video
 
 import asyncio
 
@@ -55,7 +55,9 @@ def add_videos_from_csv():
             video_urls.append(row[2])
         print("Ссылки собраны")
 
-        precompute_hashes2()
+        read_video(video_urls)
+        
+        #precompute_hashes2()
         #loop = asyncio.get_event_loop()
         #results = loop.run_until_complete(precompute_hashes())
 

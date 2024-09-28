@@ -6,9 +6,23 @@ from numba import jit, cuda
 
 w, h = 100, 200
 
+import torch
+import torchvision
+ 
+ 
+def read_video(video_path):
+   reader = torchvision.io.VideoReader(video_path, "video", num_threads=0, device="cuda")
+   #resizer = torchvision.transforms.Resize(image_size_low, antialias=True)
+ 
+   curr_frames = []
+ 
+   for frame in reader:
+       curr_frames.append(frame["data"])
+       print(frame["data"])
 
 
-@cuda.jit('void(string[:])')
+
+#@cuda.jit('void(string[:])')
 def get_hash(path_to_file):
     capture = cv2.VideoCapture(path_to_file)
     fps = int(capture.get(cv2.CAP_PROP_FPS))
