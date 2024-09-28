@@ -13,7 +13,7 @@ def add_videos_from_csv():
         count_row = len(rows)
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
         for row in rows:
-            print(reader.line_num + f" из {count_row}")
+            print(f"{reader.line_num} из {count_row}")
             add_video(UUID=uuid.UUID(row[1]), upload_date=row[0], is_duplicate=row[3], is_hard=row[5])
 
         close_session()
