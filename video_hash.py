@@ -30,8 +30,8 @@ def get_hash(path_to_file):
             #blended_ver = Image.blend(blended_hor, img_ver, alpha=0.5)
             #cropped = blended_ver.crop((0, 0, w / 2, h / 2))
 
-            hash1 = imagehash.phash(img, 16)
-            result.extend(hash_to_bytearray(hash1))
+            #hash1 = imagehash.phash(img, 16)
+            #result.extend(hash_to_bytearray(hash1))
 
 
     capture.release()
