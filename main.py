@@ -2,6 +2,9 @@ import cv2
 import imagehash
 from PIL import Image, ImageOps
 import asyncio
+from database import DB
+
+base = DB()
 
 w = 100
 h = 200
@@ -31,6 +34,10 @@ async def get_hash(path_to_file):
             
             hash1 = imagehash.phash(cropped, 16)
             result.append(hash1)
+            # base.connect()
+            # base.add_video_hash(hash1)
+            #
+
 
     capture.release()
     return result
