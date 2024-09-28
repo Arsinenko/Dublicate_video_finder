@@ -2,36 +2,16 @@ import cv2
 from PIL import Image, ImageOps
 import imagehash
 from converter import hash_to_bytearray, bytearray_to_hash, hash_bytearray_to_hashes_array
-from numba import jit, cuda
 
 w, h = 100, 200
 
-import torch
-import torchvision
- 
-torchvision.set_video_backend('cuda')
- 
-def read_video(video_path):
-   reader = torchvision.io.VideoReader(video_path, "video", num_threads=0)
-   #resizer = torchvision.transforms.Resize(image_size_low, antialias=True)
- 
-   curr_frames = []
 
-   print("111")
-   for frame in reader:
-       curr_frames.append(frame["data"])
-       #print(frame["data"])
-   print("222")
-
-
-
-#@cuda.jit('void(string[:])')
 def get_hash(path_to_file):
     capture = cv2.VideoCapture(path_to_file)
     fps = int(capture.get(cv2.CAP_PROP_FPS))
     length = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    #result = bytearray()
+    result = bytearray()
 
     for i in range(0, int(length)):
         if i % fps != 0:
@@ -52,9 +32,8 @@ def get_hash(path_to_file):
             cropped = blended_ver.crop((0, 0, w / 2, h / 2))
 
             hash1 = imagehash.phash(cropped, 16)
-            #result.extend(hash_to_bytearray(hash1))
+            result.extend(hash_to_bytearray(hash1))
 
 
-    #capture.release()
-    #return result
-    return 0
+    capture.release()
+    return result

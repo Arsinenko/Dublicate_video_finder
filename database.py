@@ -42,6 +42,8 @@ def add_video(UUID, upload_date: str, is_dupl: bool, is_hard: bool):
                          is_duplicate=alg_detection,
                          duplicate_for=duplicate_for,
                          is_hard=is_hard)
+    
+    # добавление в базу
     #session.add(video)
     #session.commit()
 

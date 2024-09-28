@@ -1,41 +1,10 @@
 import csv
 import uuid
-import concurrent.futures
 
 from database import add_video, close_session
-from video_hash import get_hash, read_video
+from video_hash import get_hash
 
-import asyncio
-
-video_urls = []
-
-async def get_hash_task(n, url):
-    print(f"Рассчет хэша для видео {n}")
-    return get_hash(url)
-
-def get_hash_task2(n):
-    print(f"Рассчет хэша для видео {n}")
-    return get_hash(video_urls[n])
-
-async def precompute_hashes():
-    tasks = []
-
-    n = 1
-
-    for url in video_urls:
-        task = asyncio.create_task(get_hash_task(n, url))
-        tasks.append(task)
-        n+=1
-
-    results = await asyncio.gather(*tasks)
-    return results
-
-def precompute_hashes2():
-    with concurrent.futures.ProcessPoolExecutor(max_workers=61) as executor:
-        futures = {executor.submit(get_hash_task2, i) for i in range(len(video_urls)-1)}
-        for future in concurrent.futures.as_completed(futures):
-            data = future.result()
-            print("готово")
+##video_urls = []
 
 def add_videos_from_csv():
 
@@ -50,18 +19,10 @@ def add_videos_from_csv():
 
         n = 1
 
-        print(f"Рассчет хэшей для видео из {file_name}, кол-во строк: {count_row}")
-        for row in rows:
-            video_urls.append(row[2])
-        print("Ссылки собраны")
-
-        read_video(video_urls[0])
-
-        #precompute_hashes2()
-        #loop = asyncio.get_event_loop()
-        #results = loop.run_until_complete(precompute_hashes())
-
-        #print(results[0])
+        #print(f"Рассчет хэшей для видео из {file_name}, кол-во строк: {count_row}")
+        #for row in rows:
+        #    video_urls.append(row[2])
+        #print("Ссылки собраны")
 
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
         for row in rows:
