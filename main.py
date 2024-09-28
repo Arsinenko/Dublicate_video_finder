@@ -4,6 +4,7 @@ import cv2
 from PIL import Image, ImageOps
 import imagehash
 from converter import hash_to_bytearray, bytearray_to_hash, hash_bytearray_to_hashes_array
+from compare import compare_hashes
 w, h = 100, 200
 
 def get_hash(path_to_file):
@@ -48,9 +49,14 @@ from database import add_video, get_videos
 #           duplicate_for=uuid.UUID("00000000-0000-0000-0000-000000000000"),
 #           is_hard=False,)
 
-video = get_videos()[0]
+def is_duplicate(videohashes):
+    videos = get_videos()
+    for video in videos:
+        hashes_to_compare = hash_bytearray_to_hashes_array(video.content_hash)
+        result = compare_hashes(hashes_to_compare, videohashes)
+        if result == True:
+            return True
+    return False
 
-hashes = hash_bytearray_to_hashes_array(video.content_hash)
-
-for elem in hashes:
-    print(elem)
+testhash = get_hash("https://s3.ritm.media/yappy-db-duplicates/45e3ed7b-dc38-4717-8262-1fee5f8fb263.mp4")
+print(is_duplicate(testhash))
