@@ -45,4 +45,5 @@ add_video(UUID=uuid.UUID('45e3ed7b-dc38-4717-8262-1fee5f8fb263'),
           upload_date='2024-07-30 00:45:36',
           content_hash=get_hash("https://s3.ritm.media/yappy-db-duplicates/45e3ed7b-dc38-4717-8262-1fee5f8fb263.mp4"),
           is_duplicate=False,
-          duplicate_for="Null")
+          duplicate_for="Null",
+          is_hard=False,)
