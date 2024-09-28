@@ -9,7 +9,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def add_video(UUID: str, upload_date: str, content_hash: str, is_duplicate: bool, duplicate_for: str, is_hard: bool):
+def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, duplicate_for: str, is_hard: bool):
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
                          content_hash=content_hash,

@@ -1,7 +1,9 @@
+import uuid
+
 import cv2
 from PIL import Image, ImageOps
 import imagehash
-
+from converter import hash_to_bytearray
 w, h = 100, 200
 
 def get_hash(path_to_file):
@@ -30,11 +32,17 @@ def get_hash(path_to_file):
             cropped = blended_ver.crop((0, 0, w / 2, h / 2))
 
             hash1 = imagehash.phash(cropped, 16)
-            result.append(hash1)
+            result.append(hash_to_bytearray(hash1))
             print(hash1)
 
     capture.release()
     return result
 
 
-get_hash("https://s3.ritm.media/yappy-db-duplicates/23fac2f2-7f00-48cb-b3ac-aac8caa3b6b4.mp4")
+print(get_hash("https://s3.ritm.media/yappy-db-duplicates/23fac2f2-7f00-48cb-b3ac-aac8caa3b6b4.mp4"))
+from database import add_video
+add_video(UUID=uuid.UUID('45e3ed7b-dc38-4717-8262-1fee5f8fb263'),
+          upload_date='2024-07-30 00:45:36',
+          content_hash=get_hash("https://s3.ritm.media/yappy-db-duplicates/45e3ed7b-dc38-4717-8262-1fee5f8fb263.mp4"),
+          is_duplicate=False,
+          duplicate_for="Null")
