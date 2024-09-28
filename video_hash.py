@@ -9,9 +9,10 @@ w, h = 100, 200
 import torch
 import torchvision
  
+torchvision.set_video_backend('cuda')
  
 def read_video(video_path):
-   reader = torchvision.io.VideoReader(video_path, "video", num_threads=0, device="cuda")
+   reader = torchvision.io.VideoReader(video_path, "video", num_threads=0)
    #resizer = torchvision.transforms.Resize(image_size_low, antialias=True)
  
    curr_frames = []
