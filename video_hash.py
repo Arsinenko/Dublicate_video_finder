@@ -6,7 +6,7 @@ from numba import jit, cuda
 
 w, h = 100, 200
 
-@jit(nopython=True, target_backend='cuda')
+@cuda.jit('void(string[:])')
 def get_hash(path_to_file):
     capture = cv2.VideoCapture(path_to_file)
     fps = int(capture.get(cv2.CAP_PROP_FPS))
