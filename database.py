@@ -1,5 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from torch.utils.tensorboard.summary import video
+
 import models
 
 engine = create_engine("postgresql://hacksai:qwerty1221777@localhost:5432/hacksdb")
@@ -21,7 +23,8 @@ def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, dup
     session.close()
 
 def get_videos():
-    return session.query(models.Video).all()
+    videos = session.query(models.Video).all()
+    return videos
 
 
 
