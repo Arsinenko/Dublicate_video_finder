@@ -43,11 +43,12 @@ def get_videos():
 
 
 def add_videos_from_csv():
-
     with open("train.csv", "r") as file:
         reader = csv.reader(file)
-        count_row = list(reader)
+        count_row = len(list(reader))
+        print("начало цикла")
         for row in reader:
+
             # print("uuid:" + row[1])
             # print("upload_date:" + row[0])
             # print("")
