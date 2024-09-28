@@ -24,19 +24,19 @@ def is_duplicate(videohashes):
     return (False, None)
 
 
-def add_video(UUID, upload_date: str, is_duplicate: bool, is_hard: bool):
+def add_video(UUID, upload_date: str, is_dupl: bool, is_hard: bool):
     video_hash = hash_bytearray_to_hashes_array(
         get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
     )
-    _is_duplicate, duplicate_for = is_duplicate(video_hash)
+    alg_detection, duplicate_for = is_duplicate(video_hash)
 
-    print(_is_duplicate, is_duplicate)
-    if is_duplicate != is_duplicate:
-        input(f"Несоответствие: алгоритм: {_is_duplicate} тестовые данные: {is_duplicate} {UUID}")
+    #print(alg_detection, is_dupl)
+    if alg_detection != is_dupl:
+        input(f"Несоответствие: алгоритм: {alg_detection} тестовые данные: {is_dupl} {UUID}")
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
                          content_hash=video_hash,
-                         is_duplicate=is_duplicate,
+                         is_duplicate=alg_detection,
                          duplicate_for=duplicate_for,
                          is_hard=is_hard)
     session.add(video)
