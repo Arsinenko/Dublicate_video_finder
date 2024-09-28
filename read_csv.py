@@ -31,7 +31,7 @@ async def precompute_hashes():
     return results
 
 def precompute_hashes2():
-    with concurrent.futures.ProcessPoolExecutor(max_workers=None) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=61) as executor:
         futures = {executor.submit(get_hash_task2, i) for i in range(len(video_urls))}
         for future in concurrent.futures.as_completed(futures):
             data = future.result()
