@@ -43,6 +43,7 @@ def get_videos():
 
 
 def add_videos_from_csv():
+
     with open("train.csv", "r") as file:
         reader = csv.reader(file)
         count_row = list(reader)
