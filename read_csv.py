@@ -2,6 +2,28 @@ import csv
 import uuid
 
 from database import add_video, close_session
+from video_hash import get_hash
+
+import asyncio
+
+video_urls = []
+
+def get_hash_task(n, url):
+    print(f"Рассчет хэша для видео {n}")
+    return 143
+
+async def precompute_hashes():
+    tasks = []
+
+    n = 1
+
+    for url in video_urls:
+        task = asyncio.create_task(get_hash_task(n, url))
+        tasks.append(task)
+        n+=1
+
+    results = await asyncio.gather(*tasks)
+    return results
 
 def add_videos_from_csv():
 
@@ -17,11 +39,15 @@ def add_videos_from_csv():
         n = 1
 
         print(f"Рассчет хэшей для видео из {file_name}, кол-во строк: {count_row}")
-        urls = []
         for row in rows:
-            urls.append(row[2])
+            video_urls.append(row[2])
         print("Ссылки собраны")
-        
+
+        loop = asyncio.get_event_loop()
+        results = loop.run_until_complete(precompute_hashes())
+
+        print(results[0])
+
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
         for row in rows:
             print(f"{n} из {count_row}")
