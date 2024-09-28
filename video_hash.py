@@ -22,15 +22,15 @@ def get_hash(path_to_file):
             gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
 
             img = Image.fromarray(gray)
-            img_hor = ImageOps.mirror(img)
+            #img_hor = ImageOps.mirror(img)
 
-            blended_hor = Image.blend(img, img_hor, alpha=0.5)
-            img_ver = ImageOps.flip(blended_hor)
+            #blended_hor = Image.blend(img, img_hor, alpha=0.5)
+            #img_ver = ImageOps.flip(blended_hor)
 
-            blended_ver = Image.blend(blended_hor, img_ver, alpha=0.5)
-            cropped = blended_ver.crop((0, 0, w / 2, h / 2))
+            #blended_ver = Image.blend(blended_hor, img_ver, alpha=0.5)
+            #cropped = blended_ver.crop((0, 0, w / 2, h / 2))
 
-            hash1 = imagehash.phash(cropped, 16)
+            hash1 = imagehash.phash(img, 16)
             result.extend(hash_to_bytearray(hash1))
 
 
