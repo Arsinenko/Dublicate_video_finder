@@ -38,7 +38,7 @@ def get_hash(path_to_file):
     capture.release()
     hasharray = bytearray()
     for elem in result:
-        hasharray.append(elem)
+        hasharray.extend(elem)
     return hasharray
 
 
