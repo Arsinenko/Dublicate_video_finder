@@ -25,12 +25,16 @@ def is_duplicate(videohashes):
 
 
 def add_video(UUID, upload_date: str, is_dupl: bool, is_hard: bool):
+    print("hash")
     video_hash = get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
+    print("delection")
     alg_detection, duplicate_for = is_duplicate(hash_bytearray_to_hashes_array(video_hash))
 
     #print(alg_detection, is_dupl)
     if alg_detection != is_dupl:
         input(f"Несоответствие: алгоритм: {alg_detection} тестовые данные: {is_dupl} {UUID}")
+
+    print("add to db")
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
                          content_hash=video_hash,
