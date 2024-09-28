@@ -18,3 +18,4 @@ def hash_bytearray_to_hashes_array(byteshash):
     hashes = []
     for elem in hashesbytes:
         hashes.append(bytearray_to_hash(elem))
+    return hashes
