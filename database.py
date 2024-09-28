@@ -25,10 +25,8 @@ def is_duplicate(videohashes):
 
 
 def add_video(UUID, upload_date: str, is_dupl: bool, is_hard: bool):
-    video_hash = hash_bytearray_to_hashes_array(
-        get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
-    )
-    alg_detection, duplicate_for = is_duplicate(video_hash)
+    video_hash = get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
+    alg_detection, duplicate_for = is_duplicate(hash_bytearray_to_hashes_array(video_hash))
 
     #print(alg_detection, is_dupl)
     if alg_detection != is_dupl:
