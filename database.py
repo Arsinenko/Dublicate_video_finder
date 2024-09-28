@@ -1,8 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
+from torch.utils.tensorboard.summary import video
 
 import models
+from converter import hash_bytearray_to_hashes_array
+from main import get_hash
 
 engine = create_engine("postgresql://hacksai:qwerty1221777@localhost:5432/hacksdb")
 
@@ -12,6 +14,10 @@ session = Session()
 
 
 def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, duplicate_for: str, is_hard: bool):
+    video_hash = hash_bytearray_to_hashes_array(
+        get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
+    )
+    _is_duplicate, duplicate_for = is_duplicate(video_hash)
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
                          content_hash=content_hash,
