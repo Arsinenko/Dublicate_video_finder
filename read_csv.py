@@ -12,6 +12,7 @@ video_hashes = []
 def get_hash_task(n, url):
     print(f"Рассчет хэша для видео {n}")
     video_hashes.append(143)
+    return []
 
 async def precompute_hashes():
     tasks = []
