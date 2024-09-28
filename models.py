@@ -6,7 +6,7 @@ Base = declarative_base()
 
 
 class Video(Base):
-    __tablename__ = 'Video'
+    __tablename__ = 'video'
     uuid = Column(UUID, primary_key=True)
     upload_date = Column(DateTime)
     content_hash = Column(LargeBinary)
