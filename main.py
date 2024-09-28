@@ -3,7 +3,7 @@ import uuid
 import cv2
 from PIL import Image, ImageOps
 import imagehash
-from converter import hash_to_bytearray
+from converter import hash_to_bytearray, bytearray_to_hash, hash_bytearray_to_hashes_array
 w, h = 100, 200
 
 def get_hash(path_to_file):
@@ -11,7 +11,7 @@ def get_hash(path_to_file):
     fps = int(capture.get(cv2.CAP_PROP_FPS))
     length = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    result = []
+    result = bytearray()
 
     for i in range(0, int(length)):
         if i % fps != 0:
@@ -32,14 +32,11 @@ def get_hash(path_to_file):
             cropped = blended_ver.crop((0, 0, w / 2, h / 2))
 
             hash1 = imagehash.phash(cropped, 16)
-            result.append(hash_to_bytearray(hash1))
+            result.extend(hash_to_bytearray(hash1))
 
 
     capture.release()
-    hasharray = bytearray()
-    for elem in result:
-        hasharray.extend(elem)
-    return hasharray
+    return result
 
 
 
@@ -50,4 +47,10 @@ from database import add_video, get_videos
 #           is_duplicate=False,
 #           duplicate_for=uuid.UUID("00000000-0000-0000-0000-000000000000"),
 #           is_hard=False,)
-print(get_videos())
+
+video = get_videos()[0]
+
+hashes = hash_bytearray_to_hashes_array(video.content_hash)
+
+for elem in hashes:
+    print(elem)
