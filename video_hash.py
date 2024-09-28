@@ -19,9 +19,9 @@ def get_hash(path_to_file):
             success, frame = capture.read()
 
             resized_image = cv2.resize(frame, (w, h))
-            gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
+            #gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
 
-            img = Image.fromarray(gray)
+            img = Image.fromarray(resized_image)
             #img_hor = ImageOps.mirror(img)
 
             #blended_hor = Image.blend(img, img_hor, alpha=0.5)
