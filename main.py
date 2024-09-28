@@ -1,8 +1,10 @@
 import cv2
 import imagehash
-from PIL import Image
+from PIL import Image, ImageOps
 import asyncio
 
+w = 100
+h = 200
 
 async def get_hash(path_to_file):
     capture = cv2.VideoCapture(path_to_file)
@@ -17,10 +19,17 @@ async def get_hash(path_to_file):
         else:
             success, frame = capture.read()
 
-            resized_image = cv2.resize(frame, (100, 200))
+            resized_image = cv2.resize(frame, (w, h))
             gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
+
             img = Image.fromarray(gray)
-            hash1 = imagehash.phash(img, 16)
+            img_hor = ImageOps.mirror(img)
+            blended_hor = Image.blend(img, img_hor, alpha=0.5)
+            img_ver = ImageOps.flip(blended_hor)
+            blended_ver = Image.blend(blended_hor, img_ver, alpha=0.5)
+            cropped = blended_ver.crop((0, 0, w/2, h/2))
+            
+            hash1 = imagehash.phash(cropped, 16)
             result.append(hash1)
 
     capture.release()
