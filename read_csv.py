@@ -10,6 +10,8 @@ def add_videos_from_csv():
     with open(file_name, "r") as file:
         reader = csv.reader(file)
         rows = list(reader)
+        rows.pop(0)
+        
         count_row = len(rows)
 
         n = 1
