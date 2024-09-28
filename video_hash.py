@@ -6,9 +6,7 @@ from converter import hash_to_bytearray, bytearray_to_hash, hash_bytearray_to_ha
 w, h = 100, 200
 
 def get_hash(path_to_file):
-    print("capture")
     capture = cv2.VideoCapture(path_to_file)
-    print("capture done")
     fps = int(capture.get(cv2.CAP_PROP_FPS))
     length = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
 
