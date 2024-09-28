@@ -24,6 +24,8 @@ def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, dup
 
 def get_videos():
     videos = session.query(models.Video).all()
+    for elem in videos:
+        print(elem.content_hash)
     return videos
 
 
