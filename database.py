@@ -14,7 +14,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, is_hard: bool):
+def add_video(UUID, upload_date: str, is_duplicate: bool, is_hard: bool):
     video_hash = hash_bytearray_to_hashes_array(
         get_hash(f"https://s3.ritm.media/yappy-db-duplicates/{UUID}.mp4")
     )
@@ -25,7 +25,7 @@ def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, is_
         input(f"Несоответствие: алгоритм: {_is_duplicate} тестовые данные: {is_duplicate} {UUID}")
     video = models.Video(uuid=UUID,
                          upload_date=upload_date,
-                         content_hash=content_hash,
+                         content_hash=video_hash,
                          is_duplicate=is_duplicate,
                          duplicate_for=duplicate_for,
                          is_hard=is_hard)
