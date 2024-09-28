@@ -9,10 +9,10 @@ import asyncio
 video_urls = []
 video_hashes = []
 
-def get_hash_task(n, url):
+async def get_hash_task(n, url):
     print(f"Рассчет хэша для видео {n}")
     video_hashes.append(143)
-    return []
+    return 143
 
 async def precompute_hashes():
     tasks = []
@@ -49,6 +49,7 @@ def add_videos_from_csv():
         results = loop.run_until_complete(precompute_hashes())
 
         print(video_hashes[0])
+        print(results[0])
 
         print(f"Чтение из {file_name}, кол-во строк: {count_row}")
         for row in rows:
