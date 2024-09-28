@@ -6,12 +6,22 @@ import uuid
 import models
 from converter import hash_bytearray_to_hashes_array
 from video_hash import get_hash
+from compare import compare_hashes
 
 engine = create_engine("postgresql://hacksai:qwerty1221777@localhost:5432/hacksdb")
 
 
 Session = sessionmaker(bind=engine)
 session = Session()
+
+def is_duplicate(videohashes):
+    videos = get_videos()
+    for video in videos:
+        hashes_to_compare = hash_bytearray_to_hashes_array(video.content_hash)
+        result = compare_hashes(hashes_to_compare, videohashes)
+        if result:
+            return (True, video.uuid)
+    return (False, None)
 
 
 def add_video(UUID, upload_date: str, is_duplicate: bool, is_hard: bool):
@@ -40,5 +50,3 @@ def get_videos():
     for elem in videos:
         print(elem.content_hash)
     return videos
-
-
