@@ -9,7 +9,7 @@ w, h = 100, 200
 import torch
 import torchvision
  
-torchvision.set_video_backend('cuda')
+#torchvision.set_video_backend('cuda')
  
 def read_video(video_path):
    reader = torchvision.io.VideoReader(video_path, "video", num_threads=0)
