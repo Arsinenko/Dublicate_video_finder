@@ -55,8 +55,8 @@ def add_videos_from_csv():
             video_urls.append(row[2])
         print("Ссылки собраны")
 
-        read_video(video_urls)
-        
+        read_video(video_urls[0])
+
         #precompute_hashes2()
         #loop = asyncio.get_event_loop()
         #results = loop.run_until_complete(precompute_hashes())
