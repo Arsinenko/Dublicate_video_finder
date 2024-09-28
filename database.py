@@ -21,7 +21,6 @@ class DB:
 
     def close(self):
         if self.connection is not None:
-            self.cursor.close()
             self.connection.close()
         else:
             print("connection doesn't exist")
