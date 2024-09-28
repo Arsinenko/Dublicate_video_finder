@@ -60,3 +60,8 @@ class DB:
             return url
         except Exception as e:
             print("get video url error:" + str(e))
+
+if __name__ == "__main__":
+    db = DB()
+    db.connect()
+    db.close()
