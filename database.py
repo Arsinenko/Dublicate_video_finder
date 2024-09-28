@@ -20,5 +20,8 @@ def add_video(UUID, upload_date: str, content_hash: str, is_duplicate: bool, dup
     session.commit()
     session.close()
 
+def get_videos():
+    return session.query(models.Video).all()
+
 
 
