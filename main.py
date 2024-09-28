@@ -59,5 +59,5 @@ def is_duplicate(videohashes):
     return (False, None)
 
 
-testhash = hash_bytearray_to_hashes_array(get_hash("https://s3.ritm.media/yappy-db-duplicates/34502a8b-b45a-46e0-a3d6-a8561615f48b.mp4"))
-print(is_duplicate(testhash))
+# testhash = hash_bytearray_to_hashes_array(get_hash("https://s3.ritm.media/yappy-db-duplicates/34502a8b-b45a-46e0-a3d6-a8561615f48b.mp4"))
+# print(is_duplicate(testhash))
