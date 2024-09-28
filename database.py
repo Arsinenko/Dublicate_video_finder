@@ -1,5 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import csv
+import uuid
 
 import models
 from converter import hash_bytearray_to_hashes_array
@@ -39,5 +41,21 @@ def get_videos():
         print(elem.content_hash)
     return videos
 
+
+def add_videos_from_csv():
+    with open("train.csv", "r") as file:
+        reader = csv.reader(file)
+        count_row = list(reader)
+        for row in reader:
+            # print("uuid:" + row[1])
+            # print("upload_date:" + row[0])
+            # print("")
+            print(reader.line_num + f" из {count_row}")
+            add_video(UUID=uuid.UUID(row[1]), upload_date=row[0], is_duplicate=row[3], is_hard=row[5])
+
+        session.close()
+
+
+add_videos_from_csv()
 
 
