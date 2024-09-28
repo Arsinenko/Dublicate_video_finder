@@ -45,6 +45,4 @@ def close_session():
 
 def get_videos():
     videos = session.query(models.Video).all()
-    for elem in videos:
-        print(elem.content_hash)
     return videos
