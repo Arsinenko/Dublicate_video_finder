@@ -1,1 +1,1 @@
-This is Dublicate_video_finder repo
+This is Dublicate_video_finder repo.
