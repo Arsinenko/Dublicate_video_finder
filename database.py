@@ -43,9 +43,10 @@ def add_video(UUID, upload_date: str, is_dupl: bool, is_hard: bool):
                          duplicate_for=duplicate_for,
                          is_hard=is_hard)
     
-    # добавление в базу
-    #session.add(video)
-    #session.commit()
+    #добавление в базу
+    session.add(video)
+    session.commit()
+    return
 
 def close_session():
     session.close()

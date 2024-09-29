@@ -4,6 +4,7 @@ import uuid
 #from compare import compare_hashes
 
 
+
 #from database import add_video, get_videos
 from read_csv import add_videos_from_csv
 # add_video(UUID=uuid.UUID('45e3ed7b-dc38-4717-8262-1fee5f8fb263'),
